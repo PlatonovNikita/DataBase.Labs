@@ -1,0 +1,36 @@
+2020-09-19 07:31:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-19 07:31:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-19 07:31:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-19 07:34:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-19 07:34:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-19 07:36:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-20 09:19:12 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-20 09:19:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-09-20 09:20:23 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
