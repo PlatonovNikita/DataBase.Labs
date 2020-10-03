@@ -34,3 +34,7 @@ CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
 Table "VISITORS" already exists; SQL statement:
 CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
+2020-10-01 13:28:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "VISITORS" уже существует
+Table "VISITORS" already exists; SQL statement:
+CREATE TABLE visitors(id BIGINT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(255) NOT NULL,city VARCHAR(255) NOT NULL,position VARCHAR(255) NOT NULL); [42101-199]
