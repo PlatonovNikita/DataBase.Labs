@@ -7,6 +7,10 @@
     <title>Laba4</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css'>
     <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            pushSearch("");
+        });
+        
         function readServerString(url, callback) {
             var req = new XMLHttpRequest();
             req.onreadystatechange = function () {
