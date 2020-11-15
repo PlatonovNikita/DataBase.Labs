@@ -1,7 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var sqlite3 = require("sqlite3");
-var db = new sqlite3.Database("visitors.db");
+var db = new sqlite3.Database("visitor.db");
 
 http.createServer(function (request, responce) {
     if (request.url == "/" || request.url == "/index.html") {
