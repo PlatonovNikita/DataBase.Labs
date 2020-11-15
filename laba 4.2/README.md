@@ -8,3 +8,4 @@ node sqlite-createdb.js
 
 node sqlite-laba.js
 
+Что бы отобразилась таблица нажми поиск
