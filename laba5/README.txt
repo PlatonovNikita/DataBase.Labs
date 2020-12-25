@@ -2,7 +2,7 @@ https://phoenixnap.com/kb/install-cassandra-on-windows (Устанавливае
 
 Запускаем сервер бд. В папке с cassandra в папке bin вводим следующую команду: cassandra
 
-Открыв PowerShell вводим команды(один раз):
+Открыв PowerShell в той же папке вводим команды(один раз):
 
 cqlsh
 
