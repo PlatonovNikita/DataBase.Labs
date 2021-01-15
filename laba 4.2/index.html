@@ -10,7 +10,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             pushSearch("");
         });
-        
+
         function readServerString(url, callback) {
             var req = new XMLHttpRequest();
             req.onreadystatechange = function () {
@@ -32,7 +32,18 @@
         function pushSearch() {
             let search = document.getElementById("search").value;
             readServerString("/visitors?search=" + search, function (err, response) {
-                if (!err) document.getElementById("table").innerHTML = response;
+                if (!err) {
+                    let visitors = JSON.parse(String(response));
+                    document.getElementById("table").innerText = "";
+                    for (let visitor of visitors) {
+                        document.getElementById("table").insertAdjacentHTML("beforeend",
+                            `<tr>
+                            <td>${visitor.name}</td>
+                            <td>${visitor.city}</td>
+                            <td>${visitor.position}</td>
+                        </tr>`);
+                    }
+                }
                 else document.getElementById("table").innerHTML = "<tr><td colspan=3>" + err + "</td></tr>";
             });
         }

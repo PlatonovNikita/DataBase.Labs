@@ -1,7 +1,7 @@
 var http = require("http");
 var fs = require("fs");
 var sqlite3 = require("sqlite3");
-var db = new sqlite3.Database("visitor.db");
+var db = new sqlite3.Database("visitors.db");
 
 http.createServer(function (request, responce) {
     if (request.url == "/" || request.url == "/index.html") {
@@ -19,28 +19,31 @@ http.createServer(function (request, responce) {
         let concut = request.url.indexOf("?search=");
         let concut2 = request.url.indexOf("&");
         if (concut > -1) {
-            if (concut2 = -1) concut2 = undefined;
-            let search = request.url.substring(concut + 8, concut2).toLocaleLowerCase();
-            console.log(search);
             responce.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-            db.all("SELECT * FROM Visitors WHERE name LIKE '%" + search + "%'"
-                + " OR city LIKE '%" + search + "%'"
-                + " OR position LIKE '%" + search + "%'", function (err, rows) {
-                    for (let row of rows) {
-                        responce.write(
-                            "<tr>\n" +
-                            "<td>" + row.name + "</td>\n" +
-                            "<td>" + row.city + "</td>\n" +
-                            "<td>" + row.position + "</td>\n" +
-                            "</tr>\n");
-                        console.log("<tr>\n" +
-                            "<td>" + row.name + "</td>\n" +
-                            "<td>" + row.city + "</td>\n" +
-                            "<td>" + row.position + "</td>\n" +
-                            "</tr>\n");
-                    }
-                    responce.end();
-                });
+            if (concut2 = -1) concut2 = undefined;
+            let search = request.url.substring(concut + 8, concut2);
+            let callback = function (err, rows) {
+                let visitors = [];
+                for (let row of rows) {
+                    let visitor = {};
+                    visitor.name = row.name;
+                    visitor.city = row.city;
+                    visitor.position = row.position;
+                    visitors.push(visitor);
+                }
+                responce.write(JSON.stringify(visitors));
+                responce.end();
+            };
+            if (search) {
+                console.log(search);
+                const stmt = db.prepare("SELECT * FROM Visitors WHERE name = @search"
+                    + " OR city = @search"
+                    + " OR position = @search");
+                stmt.all({ '@search': search }, callback);
+            }
+            else {
+                db.all("SELECT * FROM Visitors", callback);
+            }
         }
     }
     else {

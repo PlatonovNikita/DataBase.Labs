@@ -31,9 +31,10 @@ http.createServer(function (request, responce) {
             console.log(search);
             responce.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             let query = "MATCH (v:Visitor)"
-            if (search) query += " WHERE v.position = '" + search + "'";
+            if (search) query += " WHERE v.position = $searchStr";
             query += " RETURN v;"
-            session.run(query)
+            let setObj = (search) ? { searchStr: search } : undefined;
+            session.run(query, setObj)
                 .then(result => {
                     let visitors = [];
                     for (let record of result.records) {

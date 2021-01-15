@@ -32,9 +32,11 @@ http.createServer(function (request, responce) {
             responce.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             let query = "SELECT visitor_id, name, city, position FROM visitors";
             if (search) {
-                query += " WHERE city = '" + search + "'";
+                query += " WHERE city = ?";
             }
-            client.execute(query,
+            const params = (search) ? [search] : undefined;
+            const setObj = (search) ? { prepare: true } : undefined;
+            client.execute(query, params, setObj,
                 function (err, result) {
                     if (!err) {
                         if (result.rows.length > 0) {
