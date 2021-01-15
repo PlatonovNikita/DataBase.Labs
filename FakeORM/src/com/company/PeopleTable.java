@@ -31,17 +31,29 @@ public class PeopleTable {
             }
         }
         id += 1;
-        statement.execute("INSERT into peoples values (" + id + ", '" + people.LastName + "', '"
-                + people.FirstName + "', '" + people.Age + "');");
+//        statement.execute("INSERT into peoples values (" + id + ", '" + people.LastName + "', '"
+//                + people.FirstName + "', '" + people.Age + "');");
+        var stmt = connection.prepareStatement("INSERT into peoples values (?,?,?,?)");
+        stmt.setInt(1, id);
+        stmt.setString(2, people.LastName);
+        stmt.setString(3, people.FirstName);
+        stmt.setInt(4, people.Age);
+        stmt.execute();
         return id;
     }
 
     public void deletePeople(int id) throws SQLException{
-        statement.execute("DELETE from peoples WHERE id = '" + id + "'");
+//        statement.execute("DELETE from peoples WHERE id = '" + id + "'");
+        var stmt = connection.prepareStatement("DELETE from peoples WHERE id = ?");
+        stmt.setInt(1, id);
+        stmt.execute();
     }
 
     public People getPeople(int id) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE id = '" + id + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE id = '" + id + "'");
+        var stmt = connection.prepareStatement("SELECT * from peoples WHERE id = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
         rs.next();
         People result = new People(
                 rs.getInt("Id"),
@@ -53,7 +65,10 @@ public class PeopleTable {
     }
 
     public List<People> getPeoplesByFirstName(String name) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE firstName = '" + name + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE firstName = '" + name + "'");
+        var stmt = connection.prepareStatement("SELECT * from peoples WHERE firstName = ?");
+        stmt.setString(1, name);
+        ResultSet rs = stmt.executeQuery();
         List<People> result = new ArrayList<People>();
         while (rs.next()){
             result.add(
@@ -69,7 +84,10 @@ public class PeopleTable {
     }
 
     public List<People> getPeoplesByLastName(String Name) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE lastName = '" + Name + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE lastName = '" + Name + "'");
+        var stmt = connection.prepareStatement("SELECT * from peoples WHERE lastName = ?");
+        stmt.setString(1, Name);
+        ResultSet rs = stmt.executeQuery();
         List<People> result = new ArrayList<People>();
         while (rs.next()){
             result.add(
@@ -85,7 +103,10 @@ public class PeopleTable {
     }
 
     public List<People> getPeoplesByAge(int age) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE age = '" + age + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from peoples WHERE age = '" + age + "'");
+        var stmt = connection.prepareStatement("SELECT * from peoples WHERE age = ?");
+        stmt.setInt(1, age);
+        ResultSet rs = stmt.executeQuery();
         List<People> result = new ArrayList<People>();
         while (rs.next()){
             result.add(

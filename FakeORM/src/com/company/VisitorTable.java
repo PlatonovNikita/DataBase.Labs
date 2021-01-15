@@ -1,9 +1,6 @@
 package com.company;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 public class VisitorTable {
@@ -26,16 +23,27 @@ public class VisitorTable {
         if(visitor.People.Id == 0){
             visitor.People.Id = peoples.insertPeople(visitor.People);
         }
-        statement.execute("INSERT into visitors (peopleId, city, position) values ('" + visitor.People.Id + "', '"
-                + visitor.City + "', '" + visitor.Position + "');");
+//        statement.execute("INSERT into visitors (peopleId, city, position) values ('" + visitor.People.Id + "', '"
+//                + visitor.City + "', '" + visitor.Position + "');");
+        var stmt = connection.prepareStatement("INSERT into visitors (peopleId, city, position) values (?,?,?);");
+        stmt.setInt(1, visitor.People.Id);
+        stmt.setString(2, visitor.City);
+        stmt.setString(3, visitor.Position);
+        stmt.execute();
     }
 
     public void deleteVisitor(int id) throws SQLException{
-        statement.execute("DELETE from visitors WHERE id = '" + id + "'");
+/*        statement.execute("DELETE from visitors WHERE id = '" + id + "'");*/
+        var stmt = connection.prepareStatement("DELETE from visitors WHERE id = ?");
+        stmt.setInt(1, id);
+        stmt.execute();
     }
 
     public Visitor getVisitor(int id) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE id = '" + id + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE id = '" + id + "'");
+        var stmt = connection.prepareStatement("SELECT * from visitors WHERE id = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
         rs.next();
         Visitor result = new Visitor(
                 rs.getInt("Id"),
@@ -47,7 +55,10 @@ public class VisitorTable {
     }
 
     public List<Visitor> getVisitorsByName(String name) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE _name = '" + name + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE _name = '" + name + "'");
+        var stmt = connection.prepareStatement("SELECT * from visitors WHERE _name = ?");
+        stmt.setString(1, name);
+        ResultSet rs = stmt.executeQuery();
         List<Visitor> result = new ArrayList<Visitor>();
         while (rs.next()){
             result.add(
@@ -63,7 +74,10 @@ public class VisitorTable {
     }
 
     public List<Visitor> getVisitorsByCity(String city) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE city = '" + city + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE city = '" + city + "'");
+        var stmt = connection.prepareStatement("SELECT * from visitors WHERE city = ?");
+        stmt.setString(1, city);
+        ResultSet rs = stmt.executeQuery();
         List<Visitor> result = new ArrayList<Visitor>();
         while (rs.next()){
             result.add(
@@ -79,7 +93,10 @@ public class VisitorTable {
     }
 
     public List<Visitor> getVisitorsByPosition(String position) throws  SQLException{
-        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE position = '" + position + "'");
+//        ResultSet rs = statement.executeQuery("SELECT * from visitors WHERE position = '" + position + "'");
+        var stmt = connection.prepareStatement("SELECT * from visitors WHERE position = ?");
+        stmt.setString(1, position);
+        ResultSet rs = stmt.executeQuery();
         List<Visitor> result = new ArrayList<Visitor>();
         while (rs.next()){
             result.add(
